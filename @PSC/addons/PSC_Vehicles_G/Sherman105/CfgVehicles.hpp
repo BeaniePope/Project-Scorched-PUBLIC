@@ -130,26 +130,27 @@ class PSC_Newton_Base_VE: Tank_F
 	scope = 1; 
 	scopeCurator = 1;
 	scopeArsenal = 1;
-	author = "Luca + Queen";
+	author = "Luca + Queen + Fish";
 	displayName = "M1 (105) (BASE)";
 	side = 1; //West
 	faction	= "BLU_F";
 	crew = "I_Survivor_F";
 	hiddenSelections[] = 
 	{
-		"camo_body","camo_details","camo_turret","camo_50cal","camo_plow_1","camo_plow_2"
+		"camo_body","camo_details","camo_turret","camo_tracks", "camo_50cal","camo_plow_1","camo_plow_2"
 	};
 	hiddenSelectionsTextures[] = 
 	{
 		"\PSC_Vehicles_G\Sherman105\data\body_co.paa",
 		"\PSC_Vehicles_G\Sherman105\data\detail_co.paa",
 		"\PSC_Vehicles_G\Sherman105\data\turret_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\NCR\turret_co.paa",
 		"\PSC_Vehicles_G\Sherman105\data\hmg_co.paa",
 		"\PSC_Vehicles_G\Sherman105\data\plow_1_co.paa",
 		"\PSC_Vehicles_G\Sherman105\data\plow_2_co.paa"
 	};
 
-	model = "\PSC_Vehicles_G\Sherman105\PSC_Sherman105.p3d";
+	model = "\PSC_Vehicles_G\Sherman105\PSC_Newton105.p3d";
 //	picture	= "15thNCR_Tank\data\ui\pic_ca.paa";
 //	icon = "15thNCR_Tank\data\ui\map_icon_ca.paa";
 
@@ -205,7 +206,7 @@ class PSC_Newton_Base_VE: Tank_F
 	{
 		class HitHull: HitHull
 		{
-			armor = 1.2;
+			armor = 5;
 			material = -1;
 			armorComponent = "hull";
 			name = "hull";
@@ -229,7 +230,7 @@ class PSC_Newton_Base_VE: Tank_F
 		};
 		class HitFuel: HitFuel
 		{
-			armor = 0.5;
+			armor = 1;
 			material = -1;
 			armorComponent = "palivo";
 			name = "palivo";
@@ -237,7 +238,7 @@ class PSC_Newton_Base_VE: Tank_F
 			passThrough = 0.1;
 			minimalHit = 0.1;
 			explosionShielding = 0.6;
-			radius = 0.3;
+			radius = 0.03;
 		};
 		class HitLTrack: HitLTrack
 		{
@@ -274,66 +275,83 @@ class PSC_Newton_Base_VE: Tank_F
 			{
 				class CommanderOptics: CommanderOptics
 				{
-					body = "ObsTurret";
-					gun = "ObsGun";
-					memoryPointGunnerOutOptics="commanderview";
-					memoryPointGunnerOptics="commanderview";
-					minElev=-8;
-					maxElev=45;
-					initElev=0;
-					minTurn=-360;
-					maxTurn=360;
-					initTurn=0;
-					minCamElev=-90;
-					maxCamElev=90;
-					memoryPointGun = "konec hlavne2";
-					gunBeg = "usti hlavne2";
-					gunEnd = "konec hlavne2";
-					weapons[]={};
-					magazines[]={};
-					discreteDistance[] = {100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};
-					discreteDistanceInitIndex = 2;
+					body="com_t_base";
+					gun="com_t_gun";
+					animationSourceBody = "com_t_base";
+					animationSourceGun = "com_t_gun";
+					stabilizedInAxes=3;
+					maxHorizontalRotSpeed=1.8;
+					maxVerticalRotSpeed=0.18000001;
 					soundServo[]=
 					{
-						"A3\Sounds_F\vehicles\soft\noises\servo_turret_MRAP01",
-						0.17782794,
+						"",
 						1,
-						10
+						1,
+						30
 					};
 					soundServoVertical[]=
 					{
-						"A3\Sounds_F\vehicles\soft\noises\servo_turret_MRAP01",
-						0.17782794,
+						"",
 						1,
-						10
+						1,
+						30
 					};
-					forceHideGunner=false;
-					gunnerAction = "Gunner_MBT_02_arty_F_out";
-					gunnerInAction = "Gunner_MBT_02_arty_F_in";
-					gunnerGetInAction="GetInLow";
-					gunnerGetOutAction="GetOutLow";
+					minElev=-10;
+					maxElev=25;
+					initElev=0;
+					minTurn=-45;
+					maxTurn=45;
+					initTurn=0;
+					memoryPointGun="usti hlavne3";
+					gunBeg="usti hlavne3";
+					gunEnd="konec hlavne3";
+					weapons[]=
+					{
+						"PSC_Sherman_HMG"
+					};
+					magazines[]=
+					{
+						"100Rnd_127x99_mag_Tracer_Yellow",
+						"100Rnd_127x99_mag_Tracer_Yellow",
+						"100Rnd_127x99_mag_Tracer_Yellow",
+						"100Rnd_127x99_mag_Tracer_Yellow",
+						"100Rnd_127x99_mag_Tracer_Yellow",
+						"100Rnd_127x99_mag_Tracer_Yellow",
+						"100Rnd_127x99_mag_Tracer_Yellow"
+					};
+					discreteDistance[]={400};
+					discreteDistanceInitIndex=0;
+					canUseScanners=0;
+					showCrewAim=1;
+					allowTabLock=0;
+					selectionFireAnim = "zasleh3";
+					memoryPointGunnerOutOptics="com_t_view";
+					memoryPointGunnerOptics="commanderview";
 					gunnerOpticsModel="\A3\weapons_f\reticle\Optics_Commander_02_F";
-					gunnerOutOpticsModel="";
+					gunnerOutOpticsModel="\A3\weapons_f\reticle\optics_empty.p3d";
 					gunnerOpticsEffect[]={};
-					isPersonTurret=0;
-					outGunnerMayFire = false;
-					inGunnerMayFire = true;
-					personTurretAction="vehicle_turnout_1";
-					minOutElev=-45;
-					maxOutElev=65;
-					initOutElev=0;
-					minOutTurn=-90;
-					maxOutTurn=90;
-					initOutTurn=0;
+					gunnerHasFlares=1;
 					gunnerForceOptics=1;
+					LodTurnedOut=0;
+					gunnerLeftHandAnimName = "otocHlaven";			/// what bone in model is the left hand connected to via IK (pilot has it set by default in parent class)
+					gunnerRightHandAnimName = "otocHlaven";
+					gunnerOutOpticsShowCursor = 1;
+					gunnerAction = "gunner_standup01";
+					gunnerInAction = "Gunner_MBT_02_arty_F_in";
+					gunnerGetInAction="GetInHigh";
+					gunnerGetOutAction="GetOutHigh";
+					startEngine=0;
+					viewGunnerInExternal=1;
+					outGunnerMayFire=1;
+					inGunnerMayFire=0;
 					class ViewGunner: ViewGunner
 					{
 					};
 					class ViewOptics: ViewOptics
 					{
 						initAngleX=0;
-						minAngleX=-30;
-						maxAngleX=30;
+						minAngleX=-180;
+						maxAngleX=180;
 						initAngleY=0;
 						minAngleY=-100;
 						maxAngleY=100;
@@ -342,18 +360,17 @@ class PSC_Newton_Base_VE: Tank_F
 						maxFov=0.6;
 						visionMode[]=
 						{
-							"Normal",
-							"NVG"
+							"Normal"
 						};
 					};
 					class OpticsIn {
 						class Wide: ViewOptics {
 							initAngleX=0;
-							minAngleX=-30;
-							maxAngleX=+30;
+							minAngleX=0;
+							maxAngleX=0;
 							initAngleY=0;
-							minAngleY=-100;
-							maxAngleY=+100;
+							minAngleY=0;
+							maxAngleY=0;
 							initFov=0.6;
 							minFov=0.6;
 							maxFov=0.6;
@@ -377,8 +394,6 @@ class PSC_Newton_Base_VE: Tank_F
 					};
 					turretInfoType = "RscOptics_MBT_01_commander";
 					usePip=1;
-					showCrewAim=1;
-					startEngine=0;
 					class HitPoints
 					{
 						class HitComTurret
@@ -386,7 +401,7 @@ class PSC_Newton_Base_VE: Tank_F
 							armor=0.1;
 							material=-1;
 							name="commander_turret_hit";
-							visual="ObsTurret";
+							visual="ObsbTurret";
 							passThrough=0;
 							minimalHit=0.1;
 							explosionShielding=1;
@@ -397,8 +412,8 @@ class PSC_Newton_Base_VE: Tank_F
 						{
 							armor=0.1;
 							material=-1;
-							name="commander_gun_hit";
-							visual="ObsGun";
+							name="hit_com_gun_point";
+							visual="obsbgun";
 							passThrough=0;
 							minimalHit=0.1;
 							explosionShielding=1;
@@ -406,10 +421,6 @@ class PSC_Newton_Base_VE: Tank_F
 							isGun=1;
 						};
 					};
-					stabilizedInAxes=3;
-					maxHorizontalRotSpeed = 3;
-					maxVerticalRotSpeed = 3;
-					viewGunnerInExternal=0;
 				};
 			};
 			
@@ -420,7 +431,7 @@ class PSC_Newton_Base_VE: Tank_F
 			gunBeg = "usti hlavne";
 			gunEnd = "konec hlavne";
 			weapons[] = {"PSC_Sherman_105_Cannon","PSC_Sherman_Coax"};
-			magazines[] = {"PSC_12Rnd_105mm_APFSDS_Red","PSC_12Rnd_105mm_HEAT_Red","PSC_16Rnd_105mm_HE_Red","1000Rnd_762x51_Belt_Yellow","1000Rnd_762x51_Belt_Yellow"};
+			magazines[] = {"PSC_12Rnd_105mm_APFSDS_Red","PSC_12Rnd_105mm_HEAT_Red","PSC_16Rnd_105mm_HE_Red","PSC_10mm_1000rnd_Belt","PSC_10mm_1000rnd_Belt", "PSC_10mm_1000rnd_Belt", "PSC_10mm_1000rnd_Belt", "PSC_10mm_1000rnd_Belt"};
 			
 			memoryPointGun = "usti hlavne1";
 			selectionFireAnim = "zasleh1";
@@ -541,7 +552,7 @@ class PSC_Newton_Base_VE: Tank_F
 		class HullTurret: NewTurret
 		{
 			startEngine = false;
-			proxyIndex = 2;
+			proxyIndex = 1;
 			body="ObsATurret";
 			gun="ObsAGun";
 			gunBeg = "usti hlavne2";
@@ -550,7 +561,7 @@ class PSC_Newton_Base_VE: Tank_F
 			animationSourceGun = "ObsAGun";
 			gunnerName = "Radio Operator";
 			weapons[] = {"PSC_Sherman_Hull_MG"};
-			magazines[] = {"1000Rnd_762x51_Belt_Yellow", "1000Rnd_762x51_Belt_Yellow"};
+			magazines[] = {"PSC_10mm_1000rnd_Belt", "PSC_10mm_1000rnd_Belt","PSC_10mm_1000rnd_Belt","PSC_10mm_1000rnd_Belt"};
 			
 			memoryPointGun = "usti hlavne2";
 			selectionFireAnim = "zasleh2";
@@ -579,7 +590,7 @@ class PSC_Newton_Base_VE: Tank_F
 			discreteDistanceInitIndex=0;
 			turretInfoType="";
 			usePip=0;
-			minElev=0;
+			minElev=-5;
 			maxElev=15;
 			initElev=0;
 			minTurn=-22;
@@ -621,8 +632,149 @@ class PSC_Newton_Base_VE: Tank_F
 			
 			class HitPoints {};
 		};
+		
+		class CargoTurret_01: CargoTurret
+		{
+			gunnerAction="passenger_bench_1";
+			gunnerGetInAction="GetInHigh";
+			gunnerGetOutAction="GetOutHigh";
+			weapons[]=
+			{
+				"FakeWeapon"
+			};
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_R1";
+			gunnerCompartments="Compartment2";
+			memoryPointGunnerOptics="";
+			canHideGunner=0;
+			outGunnerMayFire=0;
+			LODTurnedIn=0;
+			LODTurnedOut=0;
+			LodOpticsIn=0;
+			LodOpticsOut=0;
+			proxyType = "CPGunner";
+			proxyIndex=2;
+			memoryPointsGetInGunner="pos cargo 1";
+			memoryPointsGetInGunnerDir="pos cargo 1 dir";
+			ejectDeadGunner=1;
+			hideWeaponsGunner=1;
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_02: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_L1";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=3;
+			memoryPointsGetInGunner="pos cargo 2";
+			memoryPointsGetInGunnerDir="pos cargo 2 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_03: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_R2";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=4;
+			memoryPointsGetInGunner="pos cargo 3";
+			memoryPointsGetInGunnerDir="pos cargo 3 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_04: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_L2";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=5;
+			memoryPointsGetInGunner="pos cargo 4";
+			memoryPointsGetInGunnerDir="pos cargo 4 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_05: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=6;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_06: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=7;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_07: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=8;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_08: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=9;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_09: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=10;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_10: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=11;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+		class CargoTurret_11: CargoTurret_01
+		{
+			gunnerName="$STR_A3_TURRETS_CARGOTURRET_F";
+			gunnerAction="passenger_bench_1";
+			proxyIndex=12;
+			memoryPointsGetInGunner="pos cargo 5";
+			memoryPointsGetInGunnerDir="pos cargo 5 dir";
+			class Hitpoints
+			{
+			};
+		};
+
 	};
 
+	
 
 	class AnimationSources : AnimationSources
 	{
@@ -672,20 +824,28 @@ class PSC_Newton_Base_VE: Tank_F
 		};
 	};
 
-	class TextureSources
+/* 	class TextureSources
 	{
-		class Sand
+		class NCR
 		{
-			displayName = "Sand";
-			author = "Moose";
-		//	textures[] = {"\15thNCR_Tank\data\textures\body_co.paa","\15thNCR_Tank\data\textures\details_co.paa","\15thNCR_Tank\data\textures\turret_co.paa","\15thNCR_Tank\data\textures\50cal_co.paa","\15thNCR_Tank\data\textures\tank_plow_1_co.paa","\15thNCR_Tank\data\textures\tank_plow_2_co.paa"};
+			displayName = "NCR";
+			author = "Queen";
+			textures[] = 
+			{
+				"\PSC_Vehicles_G\Sherman105\data\NCR\body_co.paa",
+				"\PSC_Vehicles_G\Sherman105\data\NCR\detail_co.paa",
+				"\PSC_Vehicles_G\Sherman105\data\NCR\turret_co.paa",
+				"\PSC_Vehicles_G\Sherman105\data\NCR\hmg_co.paa",
+				"\PSC_Vehicles_G\Sherman105\data\plow_1_co.paa",
+				"\PSC_Vehicles_G\Sherman105\data\plow_2_co.paa"
+			};
 			factions[] = {};
 		};
-	};
-	textureList[] =
+	}; */
+/* 	textureList[] =
 	{
-		"Sand", 1
-	};
+		"NCR", 1
+	}; */
 
 	#include "tank_sounds.hpp"
 	#include "tank_physx.hpp"
@@ -825,15 +985,38 @@ class PSC_Newton_Base_VE: Tank_F
 	tf_isolatedAmount = 0.85;
 };
 
-class PSC_Newton_VE: PSC_Newton_Base_VE
+class PSC_Newton105_VE: PSC_Newton_Base_VE
 {
 	scope = 2; 
 	scopeCurator = 2;
 	scopeArsenal = 2;
-	author = "Luca + Queen";
-	displayName = "M1 Newton (105)";
-	faction	= "BLU_F";
+	author = "$STR_PSC_Author"; // Team name
+	displayName = "$STR_PSC_Newton_VE";
+	faction	= "PSC_Wastelander";
 	crew = "B_Survivor_F";
 	side = 1;
 	editorpreview = "";
+};
+
+class PSC_Newton105_NCR_VE: PSC_Newton_Base_VE
+{
+	scope = 2; 
+	scopeCurator = 2;
+	scopeArsenal = 2;
+	author = "$STR_PSC_Author"; // Team name
+	displayName = "$STR_PSC_Newton_VE";
+	faction	= "PSC_NCR";
+	crew = "B_Survivor_F";
+	side = 1;
+	editorpreview = "";
+	hiddenSelectionsTextures[] = 
+	{
+		"\PSC_Vehicles_G\Sherman105\data\NCR\body_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\NCR\detail_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\NCR\turret_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\NCR\tracks_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\NCR\hmg_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\plow_1_co.paa",
+		"\PSC_Vehicles_G\Sherman105\data\plow_2_co.paa"
+	};
 };

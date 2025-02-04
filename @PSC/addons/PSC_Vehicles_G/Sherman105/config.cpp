@@ -3,7 +3,7 @@ class CfgPatches
 {
 	class PSC_Newton
 	{
-		author = "Luca + Queen"; //luca did 90% of the work, I'm just fixing / editing his stuff
+		author = "$STR_PSC_Author"; // Team name
 		requiredaddons[] = 
 		{
 			"A3_Soft_F",
@@ -13,7 +13,7 @@ class CfgPatches
 		requiredversion = 1.0;
 		units[] = 
 		{
-			"PSC_Newton_VE"
+			"PSC_Newton_VE" //Test
 		};
 		weapons[] = {};
 		magazines[] = {};
@@ -53,7 +53,13 @@ class GunParticles;
 class CfgWeapons
 {
 	class LMG_coax_ext;
+	class HMG_127;
 	class PSC_Sherman_Coax : LMG_coax_ext {
+		displayName = "10mm Coaxial Machine Gun";
+		magazines[] = 
+		{
+			"PSC_10mm_1000rnd_Belt"
+		};
 		class GunParticles {
 			class FirstEffect {
 				effectName = "MachineGun1";
@@ -63,11 +69,25 @@ class CfgWeapons
 		};
 	};
 	class PSC_Sherman_Hull_MG : LMG_coax_ext {
+		displayName = "10mm Hull Machine Gun";
+		magazines[] = 
+		{
+			"PSC_10mm_1000rnd_Belt"
+		};
 		class GunParticles {
 			class FirstEffect {
 				effectName = "MachineGun2";
 				positionName = "usti hlavne2";
 				directionName = "konec hlavne2";
+			};
+		};
+	};
+	class PSC_Sherman_HMG : HMG_127 {
+		class GunParticles {
+			class FirstEffect {
+				effectName = "MachineGun3";
+				positionName = "usti hlavne3";
+				directionName = "konec hlavne3";
 			};
 		};
 	};

@@ -50,6 +50,7 @@ class UnderBarrelSlot_rail;
 class PointerSlot_Rail;
 class PointerSlot_Pistol;
 class PointerSlot_Launcher;
+class AnimationSources;
 
 class CfgSoundShaders
 {
@@ -94,8 +95,8 @@ class CfgRecoils
 {
 	class PSC_Rifle_Base_Recoil
 	{
-		muzzleOuter[] = {0.15,0.6,0.3,0.2};
-		kickBack[] = {0.01,0.03};
+		muzzleOuter[] = {0.3, 0.8, 0.4, 0.3};
+		kickBack[] = {0.02, 0.04};
 		temporary = 0.01;
 	};
 };
@@ -105,7 +106,7 @@ class CfgWeapons
 	class Rifle;
 	class Rifle_Base_F: Rifle
 	{
-		class WeaponsSlotsInfo;
+		
 	};
 
     class PSC_Rifle_Base_W:	Rifle_Base_F
@@ -119,7 +120,12 @@ class CfgWeapons
 		};
 		magazines[] = 
 		{
-			"PSC_556_ServiceRifle_M"
+			"PSC_556_ServiceRifle_M",
+			"PSC_556_ServiceRifle_Tracer_M",
+			"PSC_556_ServiceRifle_Surplus_M",
+			"PSC_556_ServiceRifle_Match_M",
+			"PSC_556_ServiceRifle_AP_M",
+			"PSC_556_ServiceRifle_FMJ_M"
 		};
 		magazineWell[] =
 		{
@@ -130,7 +136,7 @@ class CfgWeapons
         recoil = "PSC_Rifle_Base_Recoil";
         maxZeroing = 800;
 		selectionFireAnim = "zasleh";
-        class WeaponSlotsInfo
+/*         class WeaponSlotsInfo
         {
 			class MuzzleSlot : SlotInfo
 			{
@@ -146,7 +152,7 @@ class CfgWeapons
 			//class CowsSlot : CowsSlot {};
 			//class PointerSlot : PointerSlot {};
 			//allowedSlots[] = { 901 }; // you simply cannot put this into your pants
-        };
+        }; */
         distanceZoomMin = 300;
         distanceZoomMax = 300;
         descriptionShort = "";
